@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react"
 
+import gameManagerInstance from "./components/GameManager"
+import GamemodePicker from "./components/GameModePicker/GameModePicker"
+import GameBoard from "./components/GameBoard/GameBoard"
+
+import "./App.css"
+import subscriptionManagerInstance from "./components/SubscribtionManager"
+import Subscription from "./components/Subscribtion"
 function App() {
+  const [gamestate, setGamestate] = useState(gameManagerInstance.getGameState())
+
+  useEffect(() => {
+    const updateGameState = () => {
+      console.log("updateGameState")
+      setGamestate(gameManagerInstance.getGameState())
+    }
+    const gameStateSub = new Subscription(
+      Subscription.getTypes().gameState,
+      updateGameState
+    )
+    subscriptionManagerInstance.subscribe(gameStateSub)
+
+    return () => {
+      subscriptionManagerInstance.subscribe(gameStateSub)
+    }
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {gamestate === gameManagerInstance.possibleGameStates.initial ? (
+        <>
+          <GamemodePicker></GamemodePicker>
+        </>
+      ) : (
+        <>
+          <GameBoard></GameBoard>
+        </>
+      )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
