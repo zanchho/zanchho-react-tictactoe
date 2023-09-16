@@ -108,3 +108,23 @@ const GameBoard = () => {
 }
 
 export default GameBoard
+
+/*
+TODO: improvements according to chatGPT 
+  Additional Comments: While your code is relatively easy to read, consider adding 
+  comments to explain complex logic or the purpose of specific methods, especially if other 
+  developers will work with it.
+
+  UI Enhancement: You might consider enhancing the user interface by adding more visual cues 
+  or animations to make the game more engaging. For example, you could highlight the winning 
+  cells when a player wins.
+
+  Testing: Consider adding unit tests for your component to ensure that it functions 
+  correctly under different scenarios.
+
+  Refactoring: Depending on the complexity of your application, 
+  you might consider breaking down some parts of the component into smaller, 
+  reusable components. For example, the game board rendering logic could be 
+  extracted into a separate component if it becomes more complex.
+
+*/

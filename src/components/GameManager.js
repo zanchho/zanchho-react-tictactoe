@@ -35,8 +35,34 @@ class GameManager {
     ]
     this.history = []
   }
+  quitGame() {
+    //initial settings
+    this.gamemode = null
+    this.EMPTYSPACE = "#"
+    this.isUIBlocked = false
+    this.WINNERONDRAW = "draw"
+
+    //gamerelated
+    this.possibleGameStates = {
+      started: "started",
+      finished: "finished",
+      initial: "initial",
+    }
+    this.gameState = this.possibleGameStates.initial
+
+    //players should be outsourcable
+    this.playersTurn = 1 // 1st Player or 2nd Player
+    this.winner = null
+    //#empty xPlayer oPlayer
+    this.playground = [
+      [this.EMPTYSPACE, this.EMPTYSPACE, this.EMPTYSPACE],
+      [this.EMPTYSPACE, this.EMPTYSPACE, this.EMPTYSPACE],
+      [this.EMPTYSPACE, this.EMPTYSPACE, this.EMPTYSPACE],
+    ]
+  }
   restartGame() {
     this.resetPlayGround()
+    this.setGameState(this.possibleGameStates.started)
   }
   setWinner(winner) {
     winner = winner ?? null
@@ -92,11 +118,13 @@ class GameManager {
     this.setPlayGround(column, row, sign)
     if (this.hasWon(sign)) {
       this.setWinner(sign)
+      this.setGameState(this.possibleGameStates.finished)
       console.log("player %s won", sign)
       console.log(this.playground)
     }
     if (this.isDraw()) {
       this.setWinner(this.WINNERONDRAW)
+      this.setGameState(this.possibleGameStates.finished)
     }
     if (this.gamemode === this.possibleGameModes.SINGLEPLAYER) {
       this.isUIBlocked = true
@@ -188,3 +216,52 @@ class GameManager {
 
 const gameManagerInstance = new GameManager()
 export default gameManagerInstance
+
+/*
+TODO: improvements according to chatGPT
+    Comments and Documentation: While the code is relatively well-structured, 
+    it would benefit from more comments and documentation. Add comments to explain the
+    purpose and functionality of methods, especially those with complex logic or parameters.
+    Document the class with information about its usage and any important considerations
+    for developers who may use it.
+
+    Magic Values: There are a few magic values in your code, such as "#" and the numbers 3.
+    Consider defining these values as constants or class properties with meaningful 
+    names to improve code readability and make it easier 
+    to adjust them in the future if needed.
+
+    Error Handling: Consider throwing custom exceptions or using error codes instead of
+    just logging error messages when invalid moves occur. 
+    This can help you handle errors more consistently and make it easier to provide 
+    feedback to the user or other parts of your application.
+
+    Separation of Concerns: While your GameManager handles game logic and state, 
+    it also interacts with the UI (e.g., changing game states and notifying subscribers). 
+    Consider separating the UI-related concerns into a separate component or manager responsible 
+    for handling UI interactions. This would improve the separation of concerns and make 
+    your code more modular.
+
+    Use of Enums: Instead of using plain strings for game modes and game states,
+    consider using enums or constants to define these values. This can help
+    prevent typos and make the code more self-documenting.
+
+    Consistent Naming: Ensure that your variable and method names follow a consistent naming
+    convention. For example, you have both gameManagerInstance and GameManager. 
+    Make sure naming is consistent throughout the codebase.
+
+    Test Coverage: Consider adding unit tests to verify the correctness of your game logic. 
+    Testing can help catch potential issues early and ensure that changes to your code don't 
+    introduce regressions.
+
+    Refactor Conditional Logic: Some parts of your code, especially the conditional logic 
+    for checking game state and mode, could be refactored to make them more concise and easier 
+    to read. Consider breaking down complex conditions into smaller functions or using switch 
+    statements for better readability.
+
+    AI Integration (Single Player Mode): If you plan to implement AI for single-player mode,
+    ensure that there is a clear separation between player moves and AI moves in the code.
+    This will make it easier to integrate AI logic in the future.
+
+    Input Validation: Ensure that user inputs (e.g., player moves) are properly 
+    validated and sanitized to prevent potential security vulnerabilities or crashes.
+*/
