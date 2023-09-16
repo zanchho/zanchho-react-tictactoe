@@ -14,6 +14,7 @@ class GameManager {
     this.gamemode = null
     this.EMPTYSPACE = "#"
     this.isUIBlocked = false
+    this.WINNERONDRAW = "draw"
 
     //gamerelated
     this.possibleGameStates = {
@@ -25,7 +26,7 @@ class GameManager {
 
     //players should be outsourcable
     this.playersTurn = 1 // 1st Player or 2nd Player
-    this.winner = "0"
+    this.winner = null
     //#empty xPlayer oPlayer
     this.playground = [
       [this.EMPTYSPACE, this.EMPTYSPACE, this.EMPTYSPACE],
@@ -33,6 +34,17 @@ class GameManager {
       [this.EMPTYSPACE, this.EMPTYSPACE, this.EMPTYSPACE],
     ]
     this.history = []
+  }
+  restartGame() {
+    this.resetPlayGround()
+  }
+  setWinner(winner) {
+    winner = winner ?? null
+    this.winner = winner
+    SubscriptionManagerInstance.notifysubscribers(
+      Subscribtion.getTypes().win,
+      this.winner
+    )
   }
   getWinner() {
     return this.winner
@@ -44,7 +56,7 @@ class GameManager {
       [this.EMPTYSPACE, this.EMPTYSPACE, this.EMPTYSPACE],
       [this.EMPTYSPACE, this.EMPTYSPACE, this.EMPTYSPACE],
     ]
-    this.winner = "0"
+    this.setWinner(null)
     SubscriptionManagerInstance.notifysubscribers(
       Subscribtion.getTypes().playground,
       this.playground
@@ -63,7 +75,7 @@ class GameManager {
     return this.playground
   }
   makePlayerMove(player, column, row) {
-    if (this.winner !== "0") {
+    if (this.winner !== null) {
       console.log("Already Won")
       return
     }
@@ -79,10 +91,12 @@ class GameManager {
     const sign = player === 1 ? "X" : "O"
     this.setPlayGround(column, row, sign)
     if (this.hasWon(sign)) {
-      //do Won Subscription?`
-      this.winner = sign
+      this.setWinner(sign)
       console.log("player %s won", sign)
       console.log(this.playground)
+    }
+    if (this.getPlayersTurn() === 2 && this.isDraw()) {
+      this.setWinner(this.WINNERONDRAW)
     }
     if (this.gamemode === this.possibleGameModes.SINGLEPLAYER) {
       this.isUIBlocked = true
@@ -159,6 +173,16 @@ class GameManager {
     }
 
     return false
+  }
+  isDraw() {
+    for (let col = 0; col < 3; col++) {
+      for (let row = 0; row < 3; row++) {
+        if (this.playground[col][row] === this.EMPTYSPACE) {
+          return false // If an empty space is found, the game is not a draw
+        }
+      }
+    }
+    return true // If no empty spaces are found, the game is a draw
   }
 }
 

@@ -31,3 +31,16 @@
 
   font-size: 5em;
 }
+.ui-blocker {
+  background-color: rgba(31, 31, 31, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

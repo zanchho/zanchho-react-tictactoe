@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback } from "react"
+
 import gameManagerInstance from "../GameManager"
-import "./gameboard.css"
 import subscriptionManagerInstance from "../SubscribtionManager"
-import Subscription from "../Subscribtion"
+import subscription from "../Subscribtion"
+
+import "./gameboard.css"
 const GameBoard = () => {
   const [board, setBoard] = useState(gameManagerInstance.getPlayGround())
   const [winner, setWinner] = useState(gameManagerInstance.getWinner())
@@ -34,21 +36,32 @@ const GameBoard = () => {
   }, [board])
 
   useEffect(() => {
+    const updateWinner = () => {
+      setWinner(gameManagerInstance.getWinner())
+    }
+    const subWinner = new subscription(
+      subscription.getTypes().win,
+      updateWinner
+    )
+
     const updatePlayground = () => {
       console.log("updatedPlayground:", gameManagerInstance.getPlayGround())
       setBoard(gameManagerInstance.getPlayGround())
       makeMappedBoard()
     }
-    const subPlayground = new Subscription(
-      Subscription.getTypes().playground,
+    const subPlayground = new subscription(
+      subscription.getTypes().playground,
       updatePlayground
     )
     makeMappedBoard()
+
     subscriptionManagerInstance.subscribe(subPlayground)
+    subscriptionManagerInstance.subscribe(subWinner)
 
     // Unsubscribe on unmount
     return () => {
       subscriptionManagerInstance.unsubscribe(subPlayground)
+      subscriptionManagerInstance.unsubscribe(subWinner)
     }
   }, [makeMappedBoard])
 
@@ -68,6 +81,7 @@ const GameBoard = () => {
       <div className="board">{mappedBoard}</div>
       {winner ? (
         <div className="ui-blocker">
+          <h1>{winner}</h1>
           <button
             onClick={() => {
               gameManagerInstance.restartGame()

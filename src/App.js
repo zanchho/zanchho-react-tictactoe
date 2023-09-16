@@ -3,10 +3,10 @@ import { useState, useEffect } from "react"
 import gameManagerInstance from "./components/GameManager"
 import GamemodePicker from "./components/GameModePicker/GameModePicker"
 import GameBoard from "./components/GameBoard/GameBoard"
-
-import "./App.css"
 import subscriptionManagerInstance from "./components/SubscribtionManager"
 import Subscription from "./components/Subscribtion"
+
+import "./App.css"
 function App() {
   const [gamestate, setGamestate] = useState(gameManagerInstance.getGameState())
 
