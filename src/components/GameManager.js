@@ -12,7 +12,7 @@ class GameManager {
 
     //initial settings
     this.gamemode = null
-    this.EMPTYSPACE = "#"
+    this.EMPTYSPACE = " "
     this.isUIBlocked = false
     this.WINNERONDRAW = "draw"
 
@@ -34,13 +34,13 @@ class GameManager {
       [this.EMPTYSPACE, this.EMPTYSPACE, this.EMPTYSPACE],
     ]
     this.history = []
+    //TODO generate TrainingData for AI
+    this.tempTraining = []
   }
   quitGame() {
     //initial settings
     this.gamemode = null
-    this.EMPTYSPACE = "#"
     this.isUIBlocked = false
-    this.WINNERONDRAW = "draw"
 
     //gamerelated
     this.possibleGameStates = {
@@ -119,12 +119,12 @@ class GameManager {
     if (this.hasWon(sign)) {
       this.setWinner(sign)
       this.setGameState(this.possibleGameStates.finished)
-      console.log("player %s won", sign)
-      console.log(this.playground)
+      return
     }
     if (this.isDraw()) {
       this.setWinner(this.WINNERONDRAW)
       this.setGameState(this.possibleGameStates.finished)
+      return
     }
     if (this.gamemode === this.possibleGameModes.SINGLEPLAYER) {
       this.isUIBlocked = true
