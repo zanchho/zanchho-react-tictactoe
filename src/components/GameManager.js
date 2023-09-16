@@ -95,7 +95,7 @@ class GameManager {
       console.log("player %s won", sign)
       console.log(this.playground)
     }
-    if (this.getPlayersTurn() === 2 && this.isDraw()) {
+    if (this.isDraw()) {
       this.setWinner(this.WINNERONDRAW)
     }
     if (this.gamemode === this.possibleGameModes.SINGLEPLAYER) {
