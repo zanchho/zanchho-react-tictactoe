@@ -1,0 +1,32 @@
+.start-menu-button {
+  display: flex;
+  color: black;
+  flex-direction: row;
+  text-align: center;
+  height: 90%;
+  width: 90%;
+  font-size: 2.5em;
+  margin: 0;
+  transition: all 0.5s ease; /* Add smooth transition */
+}
+
+.start-menu-button:hover {
+  height: 98%;
+  width: 100%;
+}
+
+.block-field {
+  height: 88%;
+  width: 90%;
+  background: yellow;
+  padding-bottom: 2%;
+}
+
+.cutted-corner {
+  height: 88%;
+  width: 10%;
+  background: yellow;
+  clip-path: polygon(0% 0%, 100% 0, 0 100%, 0 100%);
+  transition: all 0.5s ease; /* Add smooth transition */
+  padding-bottom: 2%;
+}

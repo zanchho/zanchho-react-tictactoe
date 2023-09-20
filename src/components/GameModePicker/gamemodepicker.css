@@ -1,0 +1,16 @@
+.gamemode-picker {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.left-buttons {
+  margin-top: 40%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10%;
+  width: 50%;
+}

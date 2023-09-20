@@ -1,7 +1,8 @@
 import { useState } from "react"
 
 import GameManager from "../GameManager"
-
+import "./gamemodepicker.css"
+import StartMenuButton from "../startMenuButton/StartMenuButton"
 const GamemodePicker = () => {
   const [gameMode, setGameMode] = useState(GameManager.getGameMode())
   const { SINGLEPLAYER, MULTIPLAYER, LOCALPLAYER } =
@@ -16,15 +17,17 @@ const GamemodePicker = () => {
 
   return (
     <div className="gamemode-picker">
-      <button onClick={() => handleSetGameMode(SINGLEPLAYER)}>
-        {SINGLEPLAYER}
-      </button>
-      <button onClick={() => handleSetGameMode(MULTIPLAYER)}>
-        {MULTIPLAYER}
-      </button>
-      <button onClick={() => handleSetGameMode(LOCALPLAYER)}>
-        {LOCALPLAYER}
-      </button>
+      <div className="left-buttons">
+        <StartMenuButton onClick={() => handleSetGameMode(SINGLEPLAYER)}>
+          {SINGLEPLAYER}
+        </StartMenuButton>
+        <StartMenuButton onClick={() => handleSetGameMode(MULTIPLAYER)}>
+          {MULTIPLAYER}
+        </StartMenuButton>
+        <StartMenuButton onClick={() => handleSetGameMode(LOCALPLAYER)}>
+          {LOCALPLAYER}
+        </StartMenuButton>
+      </div>
     </div>
   )
 }
