@@ -30,7 +30,9 @@ function App() {
     <div className="App">
       <h1>TicTacToe</h1>
       {gamestate === gameManagerInstance.possibleGameStates.initial ? (
-        <GamemodePicker></GamemodePicker>
+        <>
+          <GamemodePicker></GamemodePicker>
+        </>
       ) : (
         <>
           <GameBoard></GameBoard>

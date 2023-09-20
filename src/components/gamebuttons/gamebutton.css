@@ -1,0 +1,8 @@
+.game-button {
+  background-color: rgba(44, 44, 44, 1);
+  color: white;
+}
+.game-button:hover {
+  background-color: rgba(66, 66, 66, 1);
+  color: white;
+}

@@ -5,28 +5,26 @@
   text-align: center;
   height: 90%;
   width: 90%;
-  font-size: 2.5em;
+  font-size: 3em;
   margin: 0;
   transition: all 0.5s ease; /* Add smooth transition */
 }
 
 .start-menu-button:hover {
-  height: 98%;
+  height: 90%;
   width: 100%;
 }
 
 .block-field {
-  height: 88%;
+  height: 100%;
   width: 90%;
-  background: yellow;
-  padding-bottom: 2%;
+  background: rgb(220, 220, 0);
 }
 
 .cutted-corner {
-  height: 88%;
+  height: 100%;
   width: 10%;
-  background: yellow;
-  clip-path: polygon(0% 0%, 100% 0, 0 100%, 0 100%);
+  background: rgb(220, 220, 0);
+  clip-path: polygon(0% 0%, 100% 0, 0 100%);
   transition: all 0.5s ease; /* Add smooth transition */
-  padding-bottom: 2%;
 }

@@ -5,6 +5,7 @@ import subscriptionManagerInstance from "../SubscribtionManager"
 import subscription from "../Subscribtion"
 
 import "./gameboard.css"
+import GameButton from "../gamebuttons/GameButton"
 const GameBoard = () => {
   const [board, setBoard] = useState(gameManagerInstance.getPlayGround())
   const [winner, setWinner] = useState(gameManagerInstance.getWinner())
@@ -17,13 +18,13 @@ const GameBoard = () => {
       const mappedRow = []
       row.forEach((cell, cellIndex) => {
         mappedRow.push(
-          <button
+          <GameButton
             key={cellIndex}
             className="cell"
             onClick={() => handleCellClick(rowIndex, cellIndex)}
           >
             {cell}
-          </button>
+          </GameButton>
         )
       })
       mapped.push(
@@ -76,12 +77,19 @@ const GameBoard = () => {
     )
   }
 
+  const getWinnerText = () => {
+    if (winner === gameManagerInstance.WINNERONDRAW) {
+      return "Game ended as Draw!"
+    }
+    return winner + " has won!"
+  }
+
   return (
     <div className="tictactoe">
       <div className="board">{mappedBoard}</div>
       {winner ? (
         <div className="ui-blocker">
-          <h1>{winner}</h1>
+          <h1>{getWinnerText()}</h1>
           <button
             onClick={() => {
               gameManagerInstance.restartGame()
