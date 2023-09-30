@@ -1,12 +1,21 @@
 import "./startmenubutton.css"
 
-const StartMenuButton = ({ onClick, children, className }) => {
+const StartMenuButton = ({ onClick, children, className, rightcorner }) => {
   return (
     <div className={"start-menu-button " + (className || "")}>
-      <span className="block-field" onClick={onClick}>
+      {!rightcorner ? (
+        <span className="cutted-corner-left" onClick={onClick}></span>
+      ) : (
+        <></>
+      )}
+      <span className={"block-field"} onClick={onClick}>
         {children}
       </span>
-      <span className="cutted-corner" onClick={onClick}></span>
+      {rightcorner ? (
+        <span className="cutted-corner" onClick={onClick}></span>
+      ) : (
+        <></>
+      )}
     </div>
   )
 }

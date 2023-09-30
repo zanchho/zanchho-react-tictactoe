@@ -6,6 +6,7 @@ import subscription from "../Subscribtion"
 
 import "./gameboard.css"
 import GameButton from "../gamebuttons/GameButton"
+import StartMenuButton from "../startMenuButton/StartMenuButton"
 const GameBoard = () => {
   const [board, setBoard] = useState(gameManagerInstance.getPlayGround())
   const [winner, setWinner] = useState(gameManagerInstance.getWinner())
@@ -84,29 +85,36 @@ const GameBoard = () => {
     return winner + " has won!"
   }
 
+  //TODO
   return (
     <div className="tictactoe">
       <div className="board">{mappedBoard}</div>
       {winner ? (
         <div className="ui-blocker">
-          <h1>{getWinnerText()}</h1>
-          <button
-            onClick={() => {
-              gameManagerInstance.restartGame()
-            }}
-          >
-            Restart Game
-          </button>
-          <button
-            onClick={() => {
-              gameManagerInstance.setGameState(
-                gameManagerInstance.possibleGameStates.initial
-              )
-              gameManagerInstance.resetPlayGround()
-            }}
-          >
-            QUIT GAME
-          </button>
+          <div className="panel">
+            <h1>{getWinnerText()}</h1>
+            <span className="game-buttons">
+              <StartMenuButton
+                onClick={() => {
+                  gameManagerInstance.restartGame()
+                }}
+              >
+                Restart Game
+              </StartMenuButton>
+
+              <StartMenuButton
+                onClick={() => {
+                  gameManagerInstance.setGameState(
+                    gameManagerInstance.possibleGameStates.initial
+                  )
+                  gameManagerInstance.resetPlayGround()
+                }}
+                rightcorner={true}
+              >
+                QUIT GAME
+              </StartMenuButton>
+            </span>
+          </div>
         </div>
       ) : (
         <></>

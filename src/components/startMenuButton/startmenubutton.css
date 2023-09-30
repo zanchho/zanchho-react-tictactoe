@@ -20,9 +20,15 @@
   width: 90%;
   background: rgb(220, 220, 0);
 }
-
+.cutted-corner-left {
+  height: auto;
+  width: 10%;
+  background: rgb(220, 220, 0);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  transition: all 0.5s ease;
+}
 .cutted-corner {
-  height: 100%;
+  height: auto;
   width: 10%;
   background: rgb(220, 220, 0);
   clip-path: polygon(0% 0%, 100% 0, 0 100%);

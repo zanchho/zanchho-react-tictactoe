@@ -45,3 +45,23 @@
   align-items: center;
   justify-content: center;
 }
+.panel {
+  height: 30%;
+  width: 100%;
+  margin: 40% 0;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.game-end-button {
+  height: 100%;
+  width: 50%;
+}
+.game-buttons {
+  display: flex;
+  gap: 2%;
+  width: 90%;
+  margin: 5%;
+  height: auto;
+}

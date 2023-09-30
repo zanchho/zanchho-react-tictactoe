@@ -18,13 +18,22 @@ const GamemodePicker = () => {
   return (
     <div className="gamemode-picker">
       <div className="left-buttons">
-        <StartMenuButton onClick={() => handleSetGameMode(SINGLEPLAYER)}>
+        <StartMenuButton
+          onClick={() => handleSetGameMode(SINGLEPLAYER)}
+          rightcorner={true}
+        >
           {SINGLEPLAYER}
         </StartMenuButton>
-        <StartMenuButton onClick={() => handleSetGameMode(MULTIPLAYER)}>
+        <StartMenuButton
+          onClick={() => handleSetGameMode(MULTIPLAYER)}
+          rightcorner={true}
+        >
           {MULTIPLAYER}
         </StartMenuButton>
-        <StartMenuButton onClick={() => handleSetGameMode(LOCALPLAYER)}>
+        <StartMenuButton
+          onClick={() => handleSetGameMode(LOCALPLAYER)}
+          rightcorner={true}
+        >
           {LOCALPLAYER}
         </StartMenuButton>
       </div>
