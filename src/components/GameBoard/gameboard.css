@@ -54,7 +54,7 @@
 .panel h1 {
   height: 30%;
 
-  animation: text-pulse 2s infinite;
+  animation: text-pulse 4s infinite;
   overflow: hidden;
 
   background-image: url("https://media.tenor.com/3pL_kqyFLMsAAAAC/rainbow-roygbiv.gif");
