@@ -50,10 +50,34 @@
   width: 100%;
   margin: 40% 0;
 }
-.flex-row {
-  display: flex;
-  flex-direction: row;
+
+.panel h1 {
+  height: 30%;
+
+  animation: text-pulse 2s infinite;
+  overflow: hidden;
+
+  background-image: url("https://media.tenor.com/3pL_kqyFLMsAAAAC/rainbow-roygbiv.gif");
+  background-size: cover;
+  color: transparent;
+  background-clip: text;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  text-transform: uppercase;
 }
+
+@keyframes text-pulse {
+  0% {
+    font-size: 2.125rem; /*std h1 tag*/
+  }
+  50% {
+    font-size: 4rem;
+  }
+  100% {
+    font-size: 2.125rem;
+  }
+}
+
 .game-end-button {
   height: 100%;
   width: 50%;
